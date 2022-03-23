@@ -7,7 +7,7 @@ right_wrist_y=0
 score_leftwrist=0
 function preload(){                 
 song1=loadSound('music.mp3')
-song2=loadSound('music.mp3')
+song2=loadSound('music2.mp3')
 }
 function setup(){
 canvas=createCanvas(600,600)
@@ -40,13 +40,14 @@ function gotPoses(results){
 
 function draw(){
     image(camera1,0,0,600,600)
+    song2_status = song2.isPlaying();
     if (score_leftwrist>0.2) {
         circle(left_wrist_x,left_wrist_y,20)
-      
-     new_leftWrist_y=Number(left_wrist_y)
-     new_leftWrist_y=floor(new_leftWrist_y)
-     new_leftWrist_y=new_leftWrist_y/500
-
-     
-    }
+        song1.stop()
+      if (song2_status==false) {
+       song2.play()
+       document.getElementById("song").innerHTML="playing Peterpan song "
+      }
+    
+}
 }
